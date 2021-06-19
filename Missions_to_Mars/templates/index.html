@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Costa Rica Weather</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container-fluid p-0">
+    <div class="jumbotron p-3 text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click for New Data</a></p>
+    </div>
+  </div>
+
+  <div class="container-fluid p-2 text-center">
+    <div class="row justify-content-center p-0">
+      <div class="card p-0 col-10">
+        <div class="card-header bg-light text-primary">
+          <H3>{{ mars.headline }}</H3>
+        </div>
+        <div class="card-body">
+          <p>{{ mars.bodytext }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<div class="container-fluid p-2 text-center">
+  <div class="row justify-content-center p-0">
+    <div class="card p-0 col-4">
+      <div class="card-header bg-secondary text-light">
+        <H3>Featured Image</H3>
+      </div>
+      <div class="card-body">
+        <img src="{{mars.image_url}}" class="img-fluid" alt="...">
+      </div>
+    </div>
+    <div class="card p-0 col-4">
+      <div class="card-header bg-secondary text-light">
+        <H3>Table</H3>
+      </div>
+      <div class="card-body">
+        {{mars.mars_earth | safe}}
+      </div>
+    </div>
+  </div>
+  <div class="row p-2 justify-content-center p-0">
+    {% for item in mars.hemispheres %}
+    <div class="card p-2 col-2">
+      <div class="card-body">
+        <img src="{{item.img_url}}" class="img-fluid" alt="...">
+          <div class="caption">
+            <h3>{{item.title}}</h3>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+</body>
+
+</html>
+
+<!-- data = {
+  "headline": headline,
+  "bodytext": bodytext,
+  "image_url": displayImage(browser),
+  "mars_earth": marsEarth(),
+  "hemispheres": hemiSpheres(browser)
+} -->
